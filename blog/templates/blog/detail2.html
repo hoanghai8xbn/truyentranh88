@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>html</title>
+    <script defer src="{% static 'detail.js' %}   "></script>
+    <style>
+
+    </style>
+</head>
+<body>
+    {% if arr %}
+        <div class="box" style="display:flex;justify-content:space-around">
+            {% for i in arr %}
+                    {% if i == p.id %}
+                        <a style="color:brown;transform:scale(2)" data-n=1 href="http://127.0.0.1:8000/blog/detail/{{ i }}">{{i}}</a>
+                    {% else %}
+                        <a data-n=1 href="http://127.0.0.1:8000/blog/detail/{{ i }}">{{i}}</a>
+                    {% endif %}
+            {% endfor %}
+        </div>
+    {% else %}
+         <div class="box" style="display:flex;justify-content:space-around">
+            {% for i in n %}
+                    <a data-n=1 href="http://127.0.0.1:8000/blog/detail/{{ i }}">{{i}}</a>
+            {% endfor %}
+        </div>
+    {% endif %}
+    <hr>
+    {{p.id}}
+    {{p.author}}
+    {{p.title}}
+    {{p.content}}
+    <button class="btn">click</button>
+</body>
+</html>

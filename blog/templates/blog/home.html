@@ -1,0 +1,85 @@
+{% extends "blog/base.html" %}
+{% block title %}home blog{% endblock %}
+
+{% block content %}
+    <div class="boxcontent">
+        <div class="box-image">
+            <div class="img">
+                <img src="https://static.wikia.nocookie.net/vsbattles/images/b/b4/Ep5_1_mar_EP5_1_mar.png/revision/latest/scale-to-width-down/218?cb=20201010153254" alt="">
+            </div>
+            <div class="img">
+                <img src="https://static.wikia.nocookie.net/vsbattles/images/5/52/Piece_entergram.png/revision/latest/scale-to-width-down/380?cb=20201012235355" alt="">
+            </div>
+            <div class="img">
+                <img src="https://static.wikia.nocookie.net/vsbattles/images/5/53/Othinus_Render.png/revision/latest/scale-to-width-down/480?cb=20200701230722" alt="">
+            </div>
+            <div class="img">
+                <img src="https://static.wikia.nocookie.net/vsbattles/images/4/4c/Amaterasu_Render.png/revision/latest/scale-to-width-down/400?cb=20180901071104" alt="">
+            </div>
+            <div class="img">
+                <img src="https://static.wikia.nocookie.net/vsbattles/images/8/8e/Soga_Keena.png/revision/latest/scale-to-width-down/400?cb=20170118174942" alt="">
+            </div>
+            <div class="img">
+                <img src="https://static.wikia.nocookie.net/vsbattles/images/d/d8/Haruhi.png/revision/latest/scale-to-width-down/271?cb=20181215121737" alt="">
+            </div>
+            <div class="img">
+                <img src="https://static.wikia.nocookie.net/vsbattles/images/f/f8/Shannon-chan.png/revision/latest/scale-to-width-down/330?cb=20201207173658" alt="">
+            </div>
+            <div class="img">
+                <img src="https://static.wikia.nocookie.net/vsbattles/images/f/f5/Niachan8.png/revision/latest/scale-to-width-down/400?cb=20180121031641" alt="">
+            </div>
+            <div class="img">
+                <img src="https://static.wikia.nocookie.net/vsbattles/images/8/8b/Kurahashi_Tokimi.png/revision/latest/scale-to-width-down/398?cb=20180922035115" alt="">
+            </div>
+            <div class="img">
+                <img src="https://static.wikia.nocookie.net/vsbattles/images/0/02/Mithra.png/revision/latest/scale-to-width-down/400?cb=20190816135417" alt="">
+            </div>
+            <div class="img">
+                <img src="https://static.wikia.nocookie.net/vsbattles/images/b/bb/NamiPreTS_render.png/revision/latest/scale-to-width-down/320?cb=20190809193416" alt="">
+            </div>
+            <div class="img">
+                <img src="https://static.wikia.nocookie.net/vsbattles/images/8/83/TatsumakiRender.png/revision/latest/scale-to-width-down/400?cb=20191225033107" alt="">
+            </div>
+            <div class="img">
+                <img src="https://static.wikia.nocookie.net/vsbattles/images/5/52/FBK.png/revision/latest/scale-to-width-down/300?cb=20200331032536" alt="">
+            </div>
+        </div>
+        <div class="box-post">
+            {% for p in posts %}
+                <div class="b">
+                    <h2>{{ p.author }} <span class="date">{{ p.date_posted }}</span></h2>
+                    <p class="title"><a href="{% url 'detail' p.id %}">{{ p.title }}</a></p>
+                    <p class="content">{{ p.content }}</p>
+                    {% if p.author.username == user.username %}
+                        <a href="http://127.0.0.1:8000/blog/post/{{p.id}}/update">Update</a>
+                    {% endif %}
+                </div>
+            {% endfor %}
+            <div style="display:flex;">
+                {% for i in arr %}
+                    {% if i <= max %}
+                        <a style="margin-left:45px;" href="http://127.0.0.1:8000/blog/{{i}}">{{i}}</a>
+                    {% endif %}
+                {% endfor %} 
+            </div>
+            {% if lp %}
+                {% for i in lp %}
+                    <div class="b">
+                        <h2>{{ i.author }} <span class="date">{{ i.date_posted }}</span></h2>
+                        <p class="title"><a href="{% url 'detail' i.id %}">{{ i.title }}</a></p>
+                        <p class="content">{{ i.content }}</p>
+                        {% if p.author.username == user.username %}
+                            <a href="http://127.0.0.1:8000/blog/post/{{i.id}}/update">Update</a>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            {% endif %}
+            {% if arrs %}
+                <div style="display:flex">
+                {% for i in arrs %}
+                    <a style="margin-left:40px;font-size:20px;text-align:center" href="http://127.0.0.1:8000/blog/{{i}}">{{i}}</a>
+                {% endfor %}
+                </div>  
+            {% endif %}
+        </div>
+{% endblock %}

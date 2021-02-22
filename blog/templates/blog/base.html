@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+{% load static %}
+{% load crispy_forms_tags %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %} {% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'base.css' %}">
+    <link rel="stylesheet" href="{% static 'home.css' %}">
+    <style>
+        a{
+            text-decoration:none;
+            color: seagreen;
+        }
+    </style>
+</head>
+<body>
+    <header class="hd">
+        <div class="box box-1">
+            <img src="https://ephoto360.com/uploads/worigin/2019/10/21/Tao_Logo_Mascot_Kim_Loai_Truc_Tuyen_Mien_Phi5dad37ba68d76_6d464f2b404044f20d4d7ae74dbd3b32.jpg" alt="">
+        </div>
+        <div class="box box-2">
+            <li class="item"><a href="http://127.0.0.1:8000/blog/">Home</a></li>
+            <li class="item"><a href="http://127.0.0.1:8000/blog/post/new">Blogs</a></li>
+            {% if user.is_authenticated %}
+                <li class="item"><a href="http://127.0.0.1:8000/user/logout/">Sign Out</a></li>
+                <li class="item"><a href="http://127.0.0.1:8000/user/profile">Profile</a></li>
+            {% else %}
+                <li class="item"><a href="http://127.0.0.1:8000/user/login/">Sign In</a></li>
+                <li class="item"><a href="http://127.0.0.1:8000/user/register">Register</a></li>
+            {% endif %}
+        </div>
+    </header>
+    <hr style="width:95%;margin:0 auto;">
+    {% if messages %}
+        {% for message in messages %}
+            <div class="msg">
+                 {{message}}
+            </div>
+        {% endfor %}
+    {% endif %}
+    {% block content %}
+    {% endblock %}
+</body>
+</html>
